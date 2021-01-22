@@ -146,6 +146,8 @@ openstack_cinder_auth: "{{ openstack_auth }}"
 cinder_backends:
   - name: "rbd-1"
     enabled: "{{ cinder_backend_ceph | bool }}"
+  - name: "iscsi-1"
+    enabled: "{{ cinder_backend_ceph_iscsi | bool }}"
   - name: "lvm-1"
     enabled: "{{ enable_cinder_backend_lvm | bool }}"
   - name: "nfs-1"

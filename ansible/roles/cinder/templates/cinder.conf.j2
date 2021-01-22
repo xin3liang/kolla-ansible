@@ -143,6 +143,24 @@ report_discard_supported = True
 image_upload_use_cinder_backend = True
 {% endif %}
 
+{% if cinder_backend_ceph_iscsi | bool %}
+[iscsi-1]
+target_helper = lioadm
+image_volume_cache_enabled = True
+volume_clear = zero
+rbd_max_clone_depth = 5
+rbd_flatten_volume_from_snapshot = False
+rbd_iscsi_target_iqn = {{ ceph_iscsi_target }}
+rbd_iscsi_api_url = {{ ceph_iscsi_api }}
+rbd_iscsi_api_password = {{ ceph_iscsi_password }}
+rbd_iscsi_api_user = {{ ceph_iscsi_user }}
+rbd_user = cinder
+rbd_pool = volumes
+rbd_ceph_conf = /etc/ceph/ceph.conf
+volume_driver = cinder.volume.drivers.ceph.rbd_iscsi.RBDISCSIDriver
+volume_backend_name = iscsi-1
+{% endif %}
+
 {% if enable_cinder_backend_nfs | bool %}
 [nfs-1]
 volume_driver = cinder.volume.drivers.nfs.NfsDriver
