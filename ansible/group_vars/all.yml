@@ -877,6 +877,7 @@ gnocchi_metric_datadir_volume: "gnocchi"
 # Cinder options
 #################################
 cinder_backend_ceph: "no"
+cinder_backend_ceph_iscsi: "no"
 cinder_backend_vmwarevc_vmdk: "no"
 cinder_volume_group: "cinder-volumes"
 cinder_target_helper: "{{ 'lioadm' if ansible_os_family == 'RedHat' else 'tgtadm' }}"
