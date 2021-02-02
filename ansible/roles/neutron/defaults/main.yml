@@ -386,6 +386,8 @@ mechanism_drivers:
     enabled: "{{ not enable_hyperv | bool and neutron_plugin_agent != 'ovn' }}"
   - name: "ovn"
     enabled: "{{ neutron_plugin_agent == 'ovn' }}"
+  - name: "genericswitch"
+    enabled: "{{ enable_ironic_genericswitch | bool }}"
 
 neutron_mechanism_drivers: "{{ mechanism_drivers | selectattr('enabled', 'equalto', true) | list }}"
 
