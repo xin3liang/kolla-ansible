@@ -375,6 +375,22 @@
   notify:
     - "Restart {{ service_name }} container"
 
+- name: Copying over ml2_conf_genericswitch.ini
+  become: true
+  vars:
+    service_name: "neutron-server"
+    neutron_server: "{{ neutron_services[service_name] }}"
+  template:
+    src: "{{ node_custom_config }}/neutron/ml2_conf_genericswitch.ini"
+    dest: "{{ node_config_directory }}/{{ service_name }}/ml2_conf_genericswitch.ini"
+    mode: "0660"
+  when:
+    - neutron_server.enabled | bool
+    - neutron_server.host_in_groups | bool
+    - enable_ironic_genericswitch | bool
+  notify:
+    - "Restart {{ service_name }} container"
+
 - name: Copying over bgp_dragent.ini
   become: true
   vars:

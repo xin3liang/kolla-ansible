@@ -380,6 +380,8 @@ mechanism_drivers:
     enabled: "{{ neutron_plugin_agent == 'openvswitch' }}"
   - name: "hyperv"
     enabled: "{{ enable_hyperv | bool }}"
+  - name: "genericswitch"
+    enabled: "{{ enable_ironic_genericswitch | bool }}"
   - name: "baremetal"
     enabled: "{{ enable_ironic_neutron_agent | bool }}"
   - name: "l2population"
@@ -387,6 +389,8 @@ mechanism_drivers:
   - name: "ovn"
     enabled: "{{ neutron_plugin_agent == 'ovn' }}"
 
+# NOTE(xinliang): ``genericswitch`` should be put before ``baremetal`` due to bug:
+# https://storyboard.openstack.org/#!/story/2008686
 neutron_mechanism_drivers: "{{ mechanism_drivers | selectattr('enabled', 'equalto', true) | list }}"
 
 ####################
