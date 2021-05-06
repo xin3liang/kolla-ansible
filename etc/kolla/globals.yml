@@ -657,6 +657,7 @@
 #enable_prometheus_cadvisor: "{{ enable_prometheus | bool }}"
 #enable_prometheus_memcached: "{{ enable_prometheus | bool }}"
 #enable_prometheus_alertmanager: "{{ enable_prometheus | bool }}"
+#enable_prometheus_ceph_iscsigw_exporter: "no"
 #enable_prometheus_ceph_mgr_exporter: "no"
 #enable_prometheus_openstack_exporter: "{{ enable_prometheus | bool }}"
 #enable_prometheus_elasticsearch_exporter: "{{ enable_prometheus | bool and enable_elasticsearch | bool }}"
@@ -665,9 +666,13 @@
 # List of extra parameters passed to prometheus. You can add as many to the list.
 #prometheus_cmdline_extras:
 
-# Example of setting endpoints for prometheus ceph mgr exporter.
-# You should add all ceph mgr's in your external ceph deployment.
+# Example of setting endpoints for prometheus ceph mgr and iscsigw exporters.
+# You should add all ceph mgr's and iscsigw's in your external ceph deployment.
 #prometheus_ceph_mgr_exporter_endpoints:
+#  - host1:port1
+#  - host2:port2
+#
+#prometheus_ceph_iscsigw_exporter_endpoints:
 #  - host1:port1
 #  - host2:port2
 

@@ -75,6 +75,16 @@ scrape_configs:
 {% endfor %}
 {% endif %}
 
+{% if enable_prometheus_ceph_iscsigw_exporter | bool %}
+  - job_name: ceph_iscsigw_exporter
+    honor_labels: true
+    static_configs:
+      - targets:
+{% for exporter in prometheus_ceph_iscsigw_exporter_endpoints %}
+        - '{{ exporter }}'
+{% endfor %}
+{% endif %}
+
 {% if enable_prometheus_openstack_exporter | bool %}
   - job_name: openstack_exporter
     scrape_interval: {{ prometheus_openstack_exporter_interval }}

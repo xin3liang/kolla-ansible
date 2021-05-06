@@ -1059,6 +1059,7 @@ enable_prometheus_node_exporter: "{{ enable_prometheus | bool }}"
 enable_prometheus_memcached_exporter: "{{ enable_memcached | bool }}"
 enable_prometheus_cadvisor: "{{ enable_prometheus | bool }}"
 enable_prometheus_alertmanager: "{{ enable_prometheus | bool }}"
+enable_prometheus_ceph_iscsigw_exporter: "no"
 enable_prometheus_ceph_mgr_exporter: "no"
 enable_prometheus_openstack_exporter: "{{ enable_prometheus | bool }}"
 enable_prometheus_elasticsearch_exporter: "{{ enable_prometheus | bool and enable_elasticsearch | bool }}"
@@ -1068,6 +1069,7 @@ prometheus_alertmanager_user: "admin"
 prometheus_openstack_exporter_interval: "60s"
 prometheus_elasticsearch_exporter_interval: "60s"
 prometheus_cmdline_extras:
+prometheus_ceph_iscsigw_exporter_endpoints: []
 prometheus_ceph_mgr_exporter_endpoints: []
 prometheus_openstack_exporter_endpoint_type: "internal"
 
